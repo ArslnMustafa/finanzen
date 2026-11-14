@@ -13,6 +13,7 @@ import '../../core/widgets/skeleton.dart';
 import '../../data/providers/app_providers.dart';
 import '../../theme/app_theme.dart';
 import '../alerts/widgets/alert_form_sheet.dart';
+import '../auth/auth_providers.dart';
 import '../portfolio/widgets/holding_form_sheet.dart';
 import 'widgets/portfolio_value_card.dart';
 import 'widgets/quick_actions.dart';
@@ -119,6 +120,12 @@ class _Greeting extends StatelessWidget {
           icon: LucideIcons.bell,
           tooltip: 'Bildirimler',
           onPressed: () => context.go('/alerts'),
+        ),
+        const SizedBox(width: 8),
+        CircleIconButton(
+          icon: LucideIcons.settings,
+          tooltip: 'Ayarlar',
+          onPressed: () => context.push('/ayarlar'),
         ),
       ],
     );

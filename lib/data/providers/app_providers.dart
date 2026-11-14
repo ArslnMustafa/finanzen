@@ -211,10 +211,7 @@ final marketListProvider = Provider<List<Asset>>((ref) {
   );
 });
 
-// --- Profile -----------------------------------------------------------
-
-/// Display name of the signed-in user. Phase 2 reads this from `profiles`.
-final userNameProvider = Provider<String>((ref) => 'Mustafa');
+// --- Greeting ----------------------------------------------------------
 
 /// "Günaydın" / "İyi günler" / "İyi akşamlar" / "İyi geceler".
 String greetingFor(DateTime now) {

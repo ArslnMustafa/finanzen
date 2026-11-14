@@ -61,7 +61,8 @@ Mobil öncelikli (390×844 referans), web'de içerik ortada en fazla 480 px.
 ## Aşamalar
 
 1. ✅ Kurulum: tema, router, alt menülü kabuk, dört ekran mock veriyle
-2. Supabase: proje bağlantısı, migration'lar, RLS, e-posta + Google giriş
+2. ✅ Supabase: migration'lar (`supabase/migrations/`), RLS, e-posta + şifre
+   ile giriş/kayıt, profil, ayarlar ekranı; anahtarsız çalışınca demo modu
 3. Fiyat verisi: `fetch-prices` Edge Function, `price_cache`/`price_history`,
    pg_cron, kripto için Binance WebSocket; mock veriyi değiştir
 4. İzleme listesi ve portföy: ekleme/silme, toplam değer, kâr/zarar, dağılım
@@ -69,9 +70,14 @@ Mobil öncelikli (390×844 referans), web'de içerik ortada en fazla 480 px.
    bildirim + e-posta (mobil push sonraki aşama)
 6. Yayın: web derlemesi, PWA, ücretsiz barındırma, ortam değişkenleri belgesi
 
-## Planlanan veritabanı (Aşama 2)
+## Veritabanı
 
 `profiles`, `assets`, `price_cache`, `price_history`, `watchlist`,
-`holdings`, `alerts`. Kullanıcı tablolarında RLS açık: kullanıcı yalnızca
-kendi satırlarını görür. `assets` ve `price_cache` herkese okunur, yalnızca
-servis rolü yazar. Para ve miktar alanları `numeric`, `float` değil.
+`holdings`, `alerts` — tanımları `supabase/migrations/` altında. Kullanıcı
+tablolarında RLS açık: kullanıcı yalnızca kendi satırlarını görür. `assets`,
+`price_cache` ve `price_history` herkese okunur; yazma yalnızca `service_role`
+ile (RLS'i baypas eder, ayrı politika yok). Para ve miktar alanları
+`numeric`, `float` değil.
+
+Migration'lar Supabase panelindeki SQL Editor'e sırayla yapıştırılarak
+uygulanır; bu konteynerden Supabase'e ağ erişimi yok.

@@ -75,3 +75,64 @@ Decimal? parseDecimal(String input) {
   if (cleaned.isEmpty) return null;
   return Decimal.tryParse(cleaned);
 }
+
+/// Single-line text input used by the auth forms.
+class AppTextField extends StatelessWidget {
+  const AppTextField({
+    super.key,
+    required this.controller,
+    this.hintText,
+    this.keyboardType,
+    this.obscureText = false,
+    this.autofillHints,
+    this.textInputAction,
+    this.onSubmitted,
+    this.enabled = true,
+  });
+
+  final TextEditingController controller;
+  final String? hintText;
+  final TextInputType? keyboardType;
+  final bool obscureText;
+  final Iterable<String>? autofillHints;
+  final TextInputAction? textInputAction;
+  final ValueChanged<String>? onSubmitted;
+  final bool enabled;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      keyboardType: keyboardType,
+      obscureText: obscureText,
+      autofillHints: autofillHints,
+      textInputAction: textInputAction,
+      onSubmitted: onSubmitted,
+      enabled: enabled,
+      style: AppText.body,
+      cursorColor: AppColors.accent,
+      decoration: InputDecoration(
+        hintText: hintText,
+        hintStyle: AppText.bodySecondary,
+        filled: true,
+        fillColor: AppColors.background,
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 15,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppRadius.button),
+          borderSide: const BorderSide(color: AppColors.border),
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppRadius.button),
+          borderSide: const BorderSide(color: AppColors.border),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(AppRadius.button),
+          borderSide: const BorderSide(color: AppColors.segmentSelected),
+        ),
+      ),
+    );
+  }
+}
